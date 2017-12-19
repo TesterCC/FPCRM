@@ -2,11 +2,16 @@ from django.contrib import admin
 from crm import models
 
 
-# class CustomerAdmin(admin.ModelAdmin):
-#     list_display = ('id', 'qq', 'source')
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'qq', 'source', 'consultant', 'content', 'status', 'date')
+    list_filter = ('source', 'consultant', 'date')
+    search_fields = ('qq', 'name')
+    raw_id_fields = ('consult_course',)
+    filter_horizontal = ('tags',)
+    list_editable = ('status',)
 
 # Register your models here.
-admin.site.register(models.Customer)
+admin.site.register(models.Customer, CustomerAdmin)
 admin.site.register(models.CustomerFollowUp)
 admin.site.register(models.Enrollment)
 admin.site.register(models.Course)

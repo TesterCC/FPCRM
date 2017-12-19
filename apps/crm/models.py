@@ -30,6 +30,12 @@ class Customer(models.Model):
     content = models.TextField(verbose_name="咨询详情")
     consultant = models.ForeignKey("UserProfile", verbose_name="课程顾问")
     tags = models.ManyToManyField("Tag", blank=True, null=True)   # maybe have a bug
+
+    status_choices = ((0, '已报名'),
+                      (1, '未报名'),
+                      )
+    status = models.SmallIntegerField(choices=status_choices, default=1)
+
     memo = models.TextField(verbose_name="课程备注", blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
 
