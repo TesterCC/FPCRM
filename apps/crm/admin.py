@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding:utf-8
+
 from django.contrib import admin
 from crm import models
 
@@ -9,6 +12,11 @@ class CustomerAdmin(admin.ModelAdmin):
     raw_id_fields = ('consult_course',)
     filter_horizontal = ('tags',)
     list_editable = ('status',)
+
+
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'name')    # roles 多对多，不能列,列出会报 must not be a ManyToManyField.
+
 
 # Register your models here.
 admin.site.register(models.Customer, CustomerAdmin)
@@ -22,4 +30,5 @@ admin.site.register(models.Role)
 admin.site.register(models.Payment)
 admin.site.register(models.StudyRecord)
 admin.site.register(models.Tag)
-admin.site.register(models.UserProfile)
+admin.site.register(models.UserProfile, UserProfileAdmin)
+admin.site.register(models.Menu)
