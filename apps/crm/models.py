@@ -29,7 +29,7 @@ class Customer(models.Model):
     consult_course = models.ForeignKey("Course", verbose_name="咨询课程")
     content = models.TextField(verbose_name="咨询详情")
     consultant = models.ForeignKey("UserProfile", verbose_name="课程顾问")
-    tags = models.ManyToManyField("Tag", blank=True, null=True)   # maybe have a bug
+    tags = models.ManyToManyField("Tag", blank=True)
 
     status_choices = ((0, '已报名'),
                       (1, '未报名'),
@@ -235,7 +235,7 @@ class UserProfile(models.Model):
     """
     user = models.OneToOneField(User)
     name = models.CharField(max_length=32)
-    roles = models.ManyToManyField("Role", blank=True, null=True)
+    roles = models.ManyToManyField("Role", blank=True)
 
     class Meta:
         verbose_name = "账号表"
@@ -250,6 +250,7 @@ class Role(models.Model):
     角色表
     """
     name = models.CharField(max_length=32, unique=True)
+    menus = models.ManyToManyField("Menu", blank=True)    # null=True is not useful for ManyToMany
 
     class Meta:
         verbose_name = "角色表"
@@ -257,5 +258,21 @@ class Role(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Menu(models.Model):
+    """
+    侧边菜单
+    """
+    name = models.CharField(max_length=32)
+    url_name = models.CharField(max_length=64)
+
+    class Meta:
+        verbose_name = "菜单"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
+
 
 

@@ -16,13 +16,9 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from crm import views
-from .views import IndexView, CustomerListView
+from .views import StudentIndexView
 
 urlpatterns = [
-    url(r'^$', IndexView.as_view(), name='sales_index'),
-    url(r'^customers/$', CustomerListView.as_view(), name='customer_list'),
-    # url(r'^$', views.index, name='sales_index'),
-    # url(r'^customers/$', views.customer_list, name='customer_list'),
+    url(r'^$', StudentIndexView.as_view(), name='stu_index'),
 
 ]
