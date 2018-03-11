@@ -9,6 +9,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+.idea
 .Python
 env/
 build/
@@ -95,3 +96,6 @@ ENV/
 # Rope project settings
 .ropeproject
 
+extra_apps/
+static/font/
+static/plugins/
