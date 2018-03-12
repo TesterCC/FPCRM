@@ -46,7 +46,11 @@
               <tbody>
                   {% for table_name, admin in app_tables.items %}
                   <tr>
-                  <td>{% render_app_name  admin %}</td>
+                  <td>
+                      <a href="{% url 'table_objs' app_name table_name %}">
+                          {% render_app_name  admin %}
+                      </a>
+                  </td>
                   <td>add</td>
                   <td>change</td>
                   </tr>
@@ -58,6 +62,8 @@
       </div>
     </div>
 </div>
+
+{{ admin_class.list_display }}
 
 </body>
 {% endblock %}
